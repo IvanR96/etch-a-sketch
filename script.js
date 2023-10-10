@@ -1,34 +1,68 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-// Get the container element
-const container = document.getElementById('grid-container');
+   const container = document.getElementById('grid-container');
 
-// Create a 16x16 grid of square divs
-for (let i = 0; i < 256; i++) { // 16x16 = 256
-    const square = document.createElement('div');
-    square.classList.add('square');
-    container.appendChild(square);
+   let isDrawing = false; 
 
-    square.addEventListener('click', function () {
-        square.classList.toggle('hovered');
-    });
+        
+        function handleMouseEvents(square) {
+            square.addEventListener('mouseover', function () {
+                if (isDrawing) {
+                    square.classList.add('hovered');
+                }
+            });
 
-    // Add a mouseover event listener to simulate drawing
-    square.addEventListener('mouseover', function (event) {
-        if (event.buttons === 1) { // Check if the left mouse button is pressed
-            square.classList.add('hovered');
+            square.addEventListener('mousedown', function () {
+                isDrawing = true;
+                square.classList.add('hovered');
+            });
+
+            square.addEventListener('mouseup', function () {
+                isDrawing = false;
+            });
         }
-    });
 
-}
+   function generateGrid(gridSize) {
+      const container = document.getElementById('grid-container');
+      container.innerHTML = ''; // Clear existing grid
+
+      
+      const gridColumnValue = `repeat(${gridSize}, 1fr)`;
+      const gridGapValue = '1px';
+
+      container.style.gridTemplateColumns = gridColumnValue;
+      container.style.gridGap = gridGapValue;
+
+      
+      for (let i = 0; i < gridSize * gridSize; i++) {
+          const square = document.createElement('div');
+          square.classList.add('square');
+          container.appendChild(square);
+
+          handleMouseEvents(square);
+      }
+  }
+
+  
+  const clearButton = document.getElementById('clear-button');
+  clearButton.addEventListener('click', function () {
+      const squares = document.querySelectorAll('.square');
+      squares.forEach(square => square.classList.remove('hovered'));
+  });
+
+  
+  let gridSize = prompt('Enter the number of squares per side (1-100):');
+  gridSize = parseInt(gridSize, 10); 
+
+  if (!isNaN(gridSize) && gridSize >= 1 && gridSize <= 100) {
+      generateGrid(gridSize);
+  } else {
+      alert('Please enter a valid number between 1 and 100.');
+  }
 
 
 
 });
 
-clearButton = document.querySelector('#clear-button');
 
-clearButton.addEventListener('click', function () {
-    const squares = document.querySelectorAll('.square');
-    squares.forEach(square => square.classList.remove('hovered'));
-});
+

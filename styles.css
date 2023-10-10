@@ -1,33 +1,80 @@
-.centered-wrapper {
+
+h1{
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    font-size: 48px;
+    color: orange;
+    text-shadow: 2px 2px black;
+}
+
+body{
+    background-color: bisque;
+}
+
+.container {
+    display: grid;
+    grid-gap: 1px;
+    width: 600px; 
+    height: 320px; 
+}
+
+
+.square {
+    border: 1px solid black;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+}
+
+
+.square.hovered {
+    background-color: black; 
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: red;
+    border-radius: 25px;
+    padding: 15px;
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-bottom: 40px;
+}
+
+.btn-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+button{
+    margin-bottom: 75px;
+    background-color: white;
+    width: 75px;
+    height: 75px;
+    border: 1px solid gray;
+    border-radius: 37px;
+    font-family: fantasy;
+    font-size: 18px;
+}
+button:hover{
+    box-shadow: 3px 3px 3px black;
+}
 
-
-h1{
+footer{
+    margin-top: 15px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(16, 1fr); /* 16 equal-width columns */
-    width: 322px; /* (16 squares * 20px) + (15 gaps * 1px) */
-    height: 322px; /* Ensure a square container */
-    border: 5px solid black;
-    
+a:hover{
+    box-shadow: inset 125px 0 0 0 red;
+    color: white;
 }
 
-/* Styling for individual grid squares */
-.square {
-    width: 16px; /* Calculate square width */
-    height: 16px; /* Calculate square height */
-    box-sizing: border-box;
-    
-}
 
-.square:hover{
-    background-color: royalblue;
-}
